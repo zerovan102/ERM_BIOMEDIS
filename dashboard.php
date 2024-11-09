@@ -45,9 +45,15 @@
                 <span>Pasien</span></a>
         </li>
         <li class="side-item">
-            <a class="nav-link" href="pasien.php">
+            <a class="nav-link" href="dokter.php">
                 <i class="fas fa-user fa"></i>
                 <span>Dokter</span></a>
+        </li>
+
+        <li class="side-item">
+            <a class="nav-link" href="obat.php">
+                <i class="fas fa-user fa"></i>
+                <span>Obat</span></a>
         </li>
 
         </ul>

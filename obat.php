@@ -24,19 +24,19 @@
     <hr class="mx-auto" style="max-width: 100%; width: 95%; margin-top: 15px;">
     <ul class="list-unstyled container">
         <li class="side-item">
-            <a class="nav-link" href="dashboard.html">
+            <a class="nav-link" href="dashboard.php">
                 <i class="fas fa-home"></i>
                 <span>Home</span>
             </a>
         </li>
         <li class="side-item">
-            <a class="nav-link" href="pasien.html">
+            <a class="nav-link" href="pasien.php">
                 <i class="fas fa-user"></i>
                 <span>Pasien</span>
             </a>
         </li>
         <li class="side-item">
-            <a class="nav-link" href="dokter.html">
+            <a class="nav-link" href="dokter.php">
                 <i class="fas fa-user"></i>
                 <span>Dokter</span>
             </a>
