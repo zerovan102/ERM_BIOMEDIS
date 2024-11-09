@@ -30,7 +30,7 @@
         <ul class="list-unstyled container">
 
         <li class="side-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="dashboard.php">
                     <i class="fas fa-home"></i>
                     <span>Home</span></a>
             </li>
@@ -92,7 +92,7 @@
         <div class="container-fluid">
             <div style="display: flex;">
                 <div>
-                    <h2>Dashboard Pasien</h2>
+                    <h2>Dashboard Rekam Medis Pasien</h2>
                     <p class="subtitle">Electronic Medical
                         Record</p>
                 </div>

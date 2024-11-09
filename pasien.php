@@ -29,7 +29,7 @@
         <hr class="mx-auto" style="max-width: 100%; width: 95%; margin-top: 15px;">
         <ul class="list-unstyled container">
         <li class="side-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="dashboard.php">
                     <i class="fas fa-home"></i>
                     <span>Home</span></a>
             </li>

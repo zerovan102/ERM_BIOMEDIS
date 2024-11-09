@@ -77,6 +77,8 @@
             sidebar.classList.toggle('collapsed');
             content.classList.toggle('collapsed');
         });
+        
+        
     </script>
 
     <!-- end sidebar -->

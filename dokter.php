@@ -30,7 +30,7 @@
         <ul class="list-unstyled container">
 
         <li class="side-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="dashboard.php">
                     <i class="fas fa-home"></i>
                     <span>Home</span></a>
             </li>
@@ -91,7 +91,7 @@
         <div class="container-fluid">
             <div style="display: flex;">
                 <div>
-                    <h2>Dashboard Pasien</h2>
+                    <h2>Dashboard Dokter</h2>
                     <p class="subtitle">Electronic Medical
                         Record</p>
                 </div>
@@ -173,6 +173,7 @@
                         <th>Nomor HP</th>
                         <th>Jam Kerja</th>
                         <th>Gender</th>
+                        <th>aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -184,6 +185,10 @@
                         <td id="displayPhone"></td>
                         <td id="displayGender"></td>
                         <td id="displayWorkTime"></td>
+                    <td>
+                        <button class="btn btn-sm btn-warning">Edit</button>
+                        <button class="btn btn-sm btn-danger">Hapus</button>
+                    </td>
                     </tr>
                 </tbody>
             </table>
