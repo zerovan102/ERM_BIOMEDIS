@@ -179,6 +179,7 @@
             <th>Gender</th>
             <th>Keluhan</th>
             <th>Tanggal Kunjungan</th>
+            <th>Aksi</th>
         </tr>
     </thead>
     <tbody id="patientTableBody">
@@ -237,6 +238,10 @@ function loadPatients() {
                     <td>${patient.gender}</td>
                     <td>${patient.keluhan}</td>
                     <td>${patient.tanggal_kunjungan}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning">Edit</button>
+                        <button class="btn btn-sm btn-danger">Hapus</button>
+                    </td>
                 `;
                 patientTableBody.appendChild(row);
             });

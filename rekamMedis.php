@@ -181,6 +181,7 @@
                         <th>Gender</th>
                         <th>Keluhan</th>
                         <th>Tanggal Kunjungan</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -193,6 +194,10 @@
                         <td id="displayGender"></td>
                         <td id="displayComplaint"></td>
                         <td id="displayVisitDate"></td>
+                        <td>
+                        <button class="btn btn-sm btn-warning">Edit</button>
+                        <button class="btn btn-sm btn-danger">Hapus</button>
+                    </td>
                     </tr>
                 </tbody>
             </table>
