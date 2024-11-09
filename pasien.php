@@ -159,31 +159,23 @@
 
             <h4 class="text-center">Data Pasien</h4>
             <table class="table table-bordered mt-3">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Nama</th>
-                        <th>Tanggal Lahir</th>
-                        <th>Alamat</th>
-                        <th>Nomor HP</th>
-                        <th>Gender</th>
-                        <th>Keluhan</th>
-                        <th>Tanggal Kunjungan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td id="displayName"></td>
-                        <td id="displayBirthdate"></td>
-                        <td id="displayAddress"></td>
-                        <td id="displayPhone"></td>
-                        <td id="displayGender"></td>
-                        <td id="displayComplaint"></td>
-                        <td id="displayVisitDate"></td>
-                    </tr>
-                </tbody>
-            </table>
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Nama</th>
+            <th>Tanggal Lahir</th>
+            <th>Alamat</th>
+            <th>Nomor HP</th>
+            <th>Gender</th>
+            <th>Keluhan</th>
+            <th>Tanggal Kunjungan</th>
+        </tr>
+    </thead>
+    <tbody id="patientTableBody">
+        <!-- Data pasien akan ditambahkan di sini -->
+    </tbody>
+</table>
+
         </div>
         <script>
             function displayData() {
@@ -215,6 +207,31 @@
     .catch(error => {
         console.error('Error:', error);
     });
+}
+
+document.addEventListener("DOMContentLoaded", loadPatients);
+
+function loadPatients() {
+    fetch('data_pasien.php')
+        .then(response => response.json())
+        .then(data => {
+            const patientTableBody = document.getElementById('patientTableBody');
+            data.forEach((patient, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${patient.nama}</td>
+                    <td>${patient.tanggal_lahir}</td>
+                    <td>${patient.alamat}</td>
+                    <td>${patient.nomor_hp}</td>
+                    <td>${patient.gender}</td>
+                    <td>${patient.keluhan}</td>
+                    <td>${patient.tanggal_kunjungan}</td>
+                `;
+                patientTableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Error:', error));
 }
 
 
