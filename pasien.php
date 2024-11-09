@@ -109,47 +109,48 @@
                         <div class="modal-body">
                             <!-- Form Data Pasien -->
                             <form id="patientForm">
-                                <div class="form-group">
-                                    <label for="name">Nama:</label>
-                                    <input type="text" class="form-control" id="name" required>
-                                </div>
+    <div class="form-group">
+        <label for="name">Nama:</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
 
-                                <div class="form-group">
-                                    <label for="birthdate">Tanggal Lahir:</label>
-                                    <input type="date" class="form-control" id="birthdate" required>
-                                </div>
+    <div class="form-group">
+        <label for="birthdate">Tanggal Lahir:</label>
+        <input type="date" class="form-control" id="birthdate" name="birthdate" required>
+    </div>
 
-                                <div class="form-group">
-                                    <label for="address">Alamat:</label>
-                                    <input type="text" class="form-control" id="address" required>
-                                </div>
+    <div class="form-group">
+        <label for="address">Alamat:</label>
+        <input type="text" class="form-control" id="address" name="address" required>
+    </div>
 
-                                <div class="form-group">
-                                    <label for="phone">Nomor HP:</label>
-                                    <input type="tel" class="form-control" id="phone" required>
-                                </div>
+    <div class="form-group">
+        <label for="phone">Nomor HP:</label>
+        <input type="tel" class="form-control" id="phone" name="phone" required>
+    </div>
 
-                                <div class="form-group">
-                                    <label for="gender">Gender:</label>
-                                    <select class="form-control" id="gender" required>
-                                        <option value="" disabled selected>Pilih Gender</option>
-                                        <option value="Pria">Pria</option>
-                                        <option value="Wanita">Wanita</option>
-                                    </select>
-                                </div>
+    <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select class="form-control" id="gender" name="gender" required>
+            <option value="" disabled selected>Pilih Gender</option>
+            <option value="L">Pria</option>
+            <option value="P">Wanita</option>
+        </select>
+    </div>
 
-                                <div class="form-group">
-                                    <label for="complaint">Keluhan:</label>
-                                    <textarea class="form-control" id="complaint" rows="3" required></textarea>
-                                </div>
+    <div class="form-group">
+        <label for="complaint">Keluhan:</label>
+        <textarea class="form-control" id="complaint" name="complaint" rows="3" required></textarea>
+    </div>
 
-                                <div class="form-group">
-                                    <label for="visitDate">Tanggal Kunjungan:</label>
-                                    <input type="date" class="form-control" id="visitDate" required>
-                                </div>
+    <div class="form-group">
+        <label for="visitDate">Tanggal Kunjungan:</label>
+        <input type="date" class="form-control" id="visitDate" name="visitDate" required>
+    </div>
 
-                                <button type="button" class="btn btn-primary" onclick="displayData()">Submit</button>
-                            </form>
+    <button type="button" class="btn btn-primary" onclick="displayData()">Submit</button>
+</form>
+
                         </div>
                     </div>
                 </div>
@@ -198,7 +199,28 @@
                 document.getElementById("displayVisitDate").innerText = document.getElementById("visitDate").value;
             }
 
+            function displayData() {
+    const formData = new FormData(document.getElementById('patientForm'));
+
+    fetch('main.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data); // Tampilkan pesan sukses atau error dari PHP
+        document.getElementById('patientForm').reset(); // Reset form setelah submit
+        $('#patientModal').modal('hide'); // Tutup modal setelah submit
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
         </script>
+
+        
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
