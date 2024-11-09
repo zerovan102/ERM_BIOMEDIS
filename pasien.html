@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Data Pasien dalam Modal</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5 text-center">
+    <!-- Button untuk membuka modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#patientModal">
+        Buka Form Data Pasien
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="patientModal" tabindex="-1" aria-labelledby="patientModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="patientModalLabel">Form Data Pasien</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form Data Pasien -->
+                <form id="patientForm">
+                    <div class="form-group">
+                        <label for="name">Nama:</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birthdate">Tanggal Lahir:</label>
+                        <input type="date" class="form-control" id="birthdate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Alamat:</label>
+                        <input type="text" class="form-control" id="address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Nomor HP:</label>
+                        <input type="tel" class="form-control" id="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <select class="form-control" id="gender" required>
+                            <option value="" disabled selected>Pilih Gender</option>
+                            <option value="Pria">Pria</option>
+                            <option value="Wanita">Wanita</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="complaint">Keluhan:</label>
+                        <textarea class="form-control" id="complaint" rows="3" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="visitDate">Tanggal Kunjungan:</label>
+                        <input type="date" class="form-control" id="visitDate" required>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" onclick="displayData()">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+
+    <h4 class="text-center">Data Pasien</h4>
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Tanggal Lahir</th>
+                <th>Alamat</th>
+                <th>Nomor HP</th>
+                <th>Gender</th>
+                <th>Keluhan</th>
+                <th>Tanggal Kunjungan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td id="displayName"></td>
+                <td id="displayBirthdate"></td>
+                <td id="displayAddress"></td>
+                <td id="displayPhone"></td>
+                <td id="displayGender"></td>
+                <td id="displayComplaint"></td>
+                <td id="displayVisitDate"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    function displayData() {
+        alert("Data pasien berhasil disubmit!");
+    }
+    function displayData() {
+        document.getElementById("displayName").innerText = document.getElementById("name").value;
+        document.getElementById("displayBirthdate").innerText = document.getElementById("birthdate").value;
+        document.getElementById("displayAddress").innerText = document.getElementById("address").value;
+        document.getElementById("displayPhone").innerText = document.getElementById("phone").value;
+        document.getElementById("displayGender").innerText = document.getElementById("gender").value;
+        document.getElementById("displayComplaint").innerText = document.getElementById("complaint").value;
+        document.getElementById("displayVisitDate").innerText = document.getElementById("visitDate").value;
+    }
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

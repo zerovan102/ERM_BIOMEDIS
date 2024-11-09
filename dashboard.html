@@ -108,49 +108,54 @@
 
                 </div>
             </div>
-
-
-            <div class=" row">
-                <!-- Cards -->
-                <div class="col-md-4 col-sm-12 card-content">
-                    <div class="card mb-3 shadow">
-                        <div class="card-body d-flex align-items-center">
-                            <i class="fas fa-user fa-4x"></i>
-                            <div class="row">
-                                <span>34</span>
-                                <span>Pasien</span>
-                            </div>
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="container mt-5">
+                    <h2 class="text-center">Form Data Pasien</h2>
+                    <form id="patientForm">
+                        <div class="form-group">
+                            <label for="name">Nama:</label>
+                            <input type="text" class="form-control" id="name" required>
                         </div>
-                        <a href="" class="btn btn-primary  w-100">Detail</a>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12 card-content">
-                    <div class="card mb-3 shadow">
-                        <div class="card-body d-flex align-items-center">
-                            <i class="fas fa-user fa-4x"></i>
-                            <div class="row">
-                                <span>23</span>
-                                <span>Total Dokter</span>
-                            </div>
+                        
+                        <div class="form-group">
+                            <label for="birthdate">Tanggal Lahir:</label>
+                            <input type="date" class="form-control" id="birthdate" required>
                         </div>
-                        <a href="" class="btn btn-primary  w-100">Detail</a>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12 card-content">
-                    <div class="card mb-3 shadow">
-                        <div class="card-body d-flex align-items-center">
-                            <i class="fas fa-user fa-4x"></i>
-                            <div class="row">
-                                <span>4</span>
-                                <span>Rekam Medis</span>
-                            </div>
+                
+                        <div class="form-group">
+                            <label for="address">Alamat:</label>
+                            <input type="text" class="form-control" id="address" required>
                         </div>
-                        <a href="" class="btn btn-primary not-btn  w-100">Detail</a>
-                    </div>
+                
+                        <div class="form-group">
+                            <label for="phone">Nomor HP:</label>
+                            <input type="tel" class="form-control" id="phone" required>
+                        </div>
+                
+                        <div class="form-group">
+                            <label for="gender">Gender:</label>
+                            <select class="form-control" id="gender" required>
+                                <option value="" disabled selected>Pilih Gender</option>
+                                <option value="Pria">Pria</option>
+                                <option value="Wanita">Wanita</option>
+                            </select>
+                        </div>
+                
+                        <div class="form-group">
+                            <label for="complaint">Keluhan:</label>
+                            <textarea class="form-control" id="complaint" rows="3" required></textarea>
+                        </div>
+                
+                        <div class="form-group">
+                            <label for="visitDate">Tanggal Kunjungan:</label>
+                            <input type="date" class="form-control" id="visitDate" required>
+                        </div>
+                
+                        <button type="button" class="btn btn-primary" onclick="displayData()">Submit</button>
+                    </form>
                 </div>
 
-
-            </div>
+       
 
             <!-- Table -->
 
