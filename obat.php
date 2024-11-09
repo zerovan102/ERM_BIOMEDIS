@@ -23,31 +23,28 @@
     </a>
     <hr class="mx-auto" style="max-width: 100%; width: 95%; margin-top: 15px;">
     <ul class="list-unstyled container">
-        <li class="side-item">
-            <a class="nav-link" href="dashboard.php">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </a>
-        </li>
+         <li class="side-item">
+                <a class="nav-link" href="">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span></a>
+            </li>
         <li class="side-item">
             <a class="nav-link" href="pasien.php">
-                <i class="fas fa-user"></i>
-                <span>Pasien</span>
-            </a>
+                <i class="fas fa-user fa"></i>
+                <span>Pasien</span></a>
         </li>
         <li class="side-item">
             <a class="nav-link" href="dokter.php">
-                <i class="fas fa-user"></i>
-                <span>Dokter</span>
-            </a>
+                <i class="fas fa-user fa"></i>
+                <span>Dokter</span></a>
         </li>
+
         <li class="side-item">
-            <a class="nav-link" href="#">
-                <i class="fa-solid fa-pills fa"></i>
-                <span>Obat</span>
-            </a>
+            <a class="nav-link" href="obat.php">
+                <i class="fas fa-pills fa"></i>
+                <span>Obat</span></a>
         </li>
-        
+
         <li class="side-item">
             <a class="nav-link" href="rekamMedis.php">
                 <i class="fas fa-user fa"></i>

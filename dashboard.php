@@ -52,7 +52,7 @@
 
         <li class="side-item">
             <a class="nav-link" href="obat.php">
-                <i class="fas fa-user fa"></i>
+                <i class="fas fa-pills fa"></i>
                 <span>Obat</span></a>
         </li>
 
