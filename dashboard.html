@@ -35,20 +35,20 @@
         <ul class="list-unstyled container">
 
             <li class="side-item">
-                <a class="nav-link" href="/admin">
+                <a class="nav-link" href="">
                     <i class="fas fa-home"></i>
                     <span>Home</span></a>
             </li>
-            <li class="side-item">
-                <a class="nav-link" href="/admin/kelolapesanan">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span>Kelola Pesanan</span></a>
-            </li>
-            <li class="side-item">
-                <a class="nav-link" href="/admin/kelolaproduk">
-                    <i class="fas fa-box"></i>
-                    <span>Kelola Produk</span></a>
-            </li>
+        <li class="side-item">
+            <a class="nav-link" href="pasien.html">
+                <i class="fas fa-user fa"></i>
+                <span>Pasien</span></a>
+        </li>
+        <li class="side-item">
+            <a class="nav-link" href="/admin/kelolaproduk">
+                <i class="fas fa-user fa"></i>
+                <span>Dokter</span></a>
+        </li>
 
         </ul>
         <hr class="mx-auto" style="max-width: 100%; width: 95%; margin-top: 15px;">
@@ -108,52 +108,7 @@
 
                 </div>
             </div>
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="container mt-5">
-                    <h2 class="text-center">Form Data Pasien</h2>
-                    <form id="patientForm">
-                        <div class="form-group">
-                            <label for="name">Nama:</label>
-                            <input type="text" class="form-control" id="name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="birthdate">Tanggal Lahir:</label>
-                            <input type="date" class="form-control" id="birthdate" required>
-                        </div>
-                
-                        <div class="form-group">
-                            <label for="address">Alamat:</label>
-                            <input type="text" class="form-control" id="address" required>
-                        </div>
-                
-                        <div class="form-group">
-                            <label for="phone">Nomor HP:</label>
-                            <input type="tel" class="form-control" id="phone" required>
-                        </div>
-                
-                        <div class="form-group">
-                            <label for="gender">Gender:</label>
-                            <select class="form-control" id="gender" required>
-                                <option value="" disabled selected>Pilih Gender</option>
-                                <option value="Pria">Pria</option>
-                                <option value="Wanita">Wanita</option>
-                            </select>
-                        </div>
-                
-                        <div class="form-group">
-                            <label for="complaint">Keluhan:</label>
-                            <textarea class="form-control" id="complaint" rows="3" required></textarea>
-                        </div>
-                
-                        <div class="form-group">
-                            <label for="visitDate">Tanggal Kunjungan:</label>
-                            <input type="date" class="form-control" id="visitDate" required>
-                        </div>
-                
-                        <button type="button" class="btn btn-primary" onclick="displayData()">Submit</button>
-                    </form>
-                </div>
+           
 
        
 
