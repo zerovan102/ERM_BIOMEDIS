@@ -101,28 +101,33 @@
 
             <div class="table-responsive">
                 <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>ID</th>
-                            <th>Nama</th>
-                            <th>Tanggal</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-
-                        <tr>
-
-
-                            <td>1</td>
-                            <td>Lorem</td>
-                            <td></td>
-                            <td>1</td>
-                        </tr>
-
-                    </tbody>
+                <h4 class="text-center">Data Pasien</h4>
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Nama</th>
+                        <th>Tanggal Lahir</th>
+                        <th>Alamat</th>
+                        <th>Nomor HP</th>
+                        <th>Gender</th>
+                        <th>Keluhan</th>
+                        <th>Tanggal Kunjungan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td id="displayName"></td>
+                        <td id="displayBirthdate"></td>
+                        <td id="displayAddress"></td>
+                        <td id="displayPhone"></td>
+                        <td id="displayGender"></td>
+                        <td id="displayComplaint"></td>
+                        <td id="displayVisitDate"></td>
+                    </tr>
+                </tbody>
+            </table>
                 </table>
 
             </div>
