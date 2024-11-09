@@ -45,6 +45,11 @@
                     <span>Dokter</span></a>
             </li>
 
+            <li class="side-item">
+            <a class="nav-link" href="rekamMedis.php">
+                <i class="fas fa-user fa"></i>
+                <span>Rekam Medis</span></a>
+        </li>
         </ul>
         <hr class="mx-auto" style="max-width: 100%; width: 95%; margin-top: 15px;">
 
