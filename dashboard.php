@@ -128,7 +128,33 @@
                     </tr>
                 </tbody>
             </table>
-                </table>
+             <div class="tableDoctor">
+             <h4 class="text-center">Data Dokter</h4>
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Nama Dokter</th>
+                        <th>Spesialis</th>
+                        <th>Ruangan</th>
+                        <th>Nomor HP</th>
+                        <th>Jam Kerja</th>
+                        <th>Gender</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td id="displayName"></td>
+                        <td id="displaySpeciality"></td>
+                        <td id="displayRoom"></td>
+                        <td id="displayPhone"></td>
+                        <td id="displayGender"></td>
+                        <td id="displayWorkTime"></td>
+                    </tr>
+                </tbody>
+            </table>
+             </div>   
 
             </div>
         </div>

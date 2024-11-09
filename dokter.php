@@ -115,12 +115,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="birthdate">Tanggal Lahir:</label>
+                                    <label for="Speciality">Spesialis:</label>
                                     <input type="date" class="form-control" id="birthdate" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="address">Alamat:</label>
+                                    <label for="Room">Ruangan:</label>
                                     <input type="text" class="form-control" id="address" required>
                                 </div>
 
@@ -139,13 +139,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="complaint">Keluhan:</label>
+                                    <label for="WorkTime">Jam Kerja:</label>
                                     <textarea class="form-control" id="complaint" rows="3" required></textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="visitDate">Tanggal Kunjungan:</label>
-                                    <input type="date" class="form-control" id="visitDate" required>
                                 </div>
 
                                 <button type="button" class="btn btn-primary" onclick="displayData()">Submit</button>
@@ -161,25 +156,23 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Nama</th>
-                        <th>Tanggal Lahir</th>
-                        <th>Alamat</th>
+                        <th>Nama Dokter</th>
+                        <th>Spesialis</th>
+                        <th>Ruangan</th>
                         <th>Nomor HP</th>
+                        <th>Jam Kerja</th>
                         <th>Gender</th>
-                        <th>Keluhan</th>
-                        <th>Tanggal Kunjungan</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
                         <td id="displayName"></td>
-                        <td id="displayBirthdate"></td>
-                        <td id="displayAddress"></td>
+                        <td id="displaySpeciality"></td>
+                        <td id="displayRoom"></td>
                         <td id="displayPhone"></td>
                         <td id="displayGender"></td>
-                        <td id="displayComplaint"></td>
-                        <td id="displayVisitDate"></td>
+                        <td id="displayWorkTime"></td>
                     </tr>
                 </tbody>
             </table>
@@ -190,12 +183,11 @@
             }
             function displayData() {
                 document.getElementById("displayName").innerText = document.getElementById("name").value;
-                document.getElementById("displayBirthdate").innerText = document.getElementById("birthdate").value;
-                document.getElementById("displayAddress").innerText = document.getElementById("address").value;
+                document.getElementById("displaySpeciality").innerText = document.getElementById("birthdate").value;
+                document.getElementById("displayRoom").innerText = document.getElementById("address").value;
                 document.getElementById("displayPhone").innerText = document.getElementById("phone").value;
                 document.getElementById("displayGender").innerText = document.getElementById("gender").value;
-                document.getElementById("displayComplaint").innerText = document.getElementById("complaint").value;
-                document.getElementById("displayVisitDate").innerText = document.getElementById("visitDate").value;
+                document.getElementById("displayWorkTime").innerText = document.getElementById("complaint").value;
             }
 
         </script>
