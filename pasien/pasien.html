@@ -108,6 +108,7 @@
             </div>
 
             <!-- Modal -->
+            <!-- Modal Add Pasien -->
             <div class="modal fade" id="patientModal" tabindex="-1" aria-labelledby="patientModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -125,6 +126,7 @@
                                     <label for="name">Nama:</label>
                                     <input type="text" class="form-control" id="name" name="name" required>
                                 </div>
+
 
                                 <div class="form-group">
                                     <label for="birthdate">Tanggal Lahir:</label>
@@ -168,7 +170,79 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Modal Edit Pasien -->
+            <div class="modal fade" id="editDataModal" tabindex="-1" aria-labelledby="editDataModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editDataModalLabel">Form Edit Pasien</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Form Data Pasien untuk Edit -->
+                            <form id="editPatientForm">
+                                <div class="form-group">
+                                    <label for="editName">Nama:</label>
+                                    <input type="text" class="form-control" id="editName" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"></label>
+                                    <input type="hidden" id="editPatientId" name="id_pasien">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="editBirthdate">Tanggal Lahir:</label>
+                                    <input type="date" class="form-control" id="editBirthdate" name="birthdate"
+                                        required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editAddress">Alamat:</label>
+                                    <input type="text" class="form-control" id="editAddress" name="address" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editPhone">Nomor HP:</label>
+                                    <input type="tel" class="form-control" id="editPhone" name="phone" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editGender">Gender:</label>
+                                    <select class="form-control" id="editGender" name="gender" required>
+                                        <option value="" disabled selected>Pilih Gender</option>
+                                        <option value="L">Pria</option>
+                                        <option value="P">Wanita</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editComplaint">Keluhan:</label>
+                                    <textarea class="form-control" id="editComplaint" name="complaint" rows="3"
+                                        required></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editVisitDate">Tanggal Kunjungan:</label>
+                                    <input type="date" class="form-control" id="editVisitDate" name="visitDate"
+                                        required>
+                                </div>
+
+                                <button type="button" class="btn btn-primary" onclick="submitEditForm()">Update</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <hr>
+
+
+
+
 
             <h4 class="text-center">Data Pasien</h4>
             <table class="table table-bordered mt-3">
@@ -193,6 +267,7 @@
         </div>
         <script>
 
+            // ADD DATA
             function displayData() {
 
                 const formData = new FormData(document.getElementById('patientForm'));
@@ -206,6 +281,8 @@
                         alert(data); // Tampilkan pesan sukses atau error dari PHP
                         document.getElementById('patientForm').reset(); // Reset form setelah submit
                         $('#patientModal').modal('hide'); // Tutup modal setelah submit
+                        location.reload();
+
                     })
                     .catch(error => {
                         console.error('Error:', error);
@@ -219,27 +296,147 @@
                     .then(response => response.json())
                     .then(data => {
                         const patientTableBody = document.getElementById('patientTableBody');
+                        patientTableBody.innerHTML = ''; // Bersihkan isi tabel
+
                         data.forEach((patient, index) => {
                             const row = document.createElement('tr');
                             row.innerHTML = `
-                    <td>${index + 1}</td>
-                    <td>${patient.nama}</td>
-                    <td>${patient.tanggal_lahir}</td>
-                    <td>${patient.alamat}</td>
-                    <td>${patient.nomor_hp}</td>
-                    <td>${patient.gender}</td>
-                    <td>${patient.keluhan}</td>
-                    <td>${patient.tanggal_kunjungan}</td>
-                    <td>
-                        <button class="btn btn-sm btn-warning">Edit</button>
-                        <button class="btn btn-sm btn-danger">Hapus</button>
-                    </td>
-                `;
+            <td>${index + 1}</td>
+            <td>${patient.nama}</td>
+            <td>${patient.tanggal_lahir}</td>
+            <td>${patient.alamat}</td>
+            <td>${patient.nomor_hp}</td>
+            <td>${patient.gender}</td>
+            <td>${patient.keluhan}</td>
+            <td>${patient.tanggal_kunjungan}</td>
+            <td>
+                <button class="btn btn-sm btn-warning edit-btn" data-index="${index}" data-toggle="modal" data-target="#editDataModal">Edit</button>
+                <button class="btn btn-sm btn-danger delete-btn" data-index="${index}">Hapus</button>
+            </td>
+        `;
                             patientTableBody.appendChild(row);
+                        });
+
+                        // Tambahkan event listener ke tombol "Edit"
+                        document.querySelectorAll('.edit-btn').forEach(button => {
+                            button.addEventListener('click', function () {
+                                const index = this.getAttribute('data-index');
+                                fillEditForm(data[index]); // Panggil fungsi untuk isi form
+                            });
+                        });
+
+                        // Tambahkan event listener ke tombol "Hapus"
+                        document.querySelectorAll('.delete-btn').forEach(button => {
+                            button.addEventListener('click', function () {
+                                const index = this.getAttribute('data-index');
+                                deletePatient(data[index].id_pasien); // Panggil fungsi hapus
+                            });
                         });
                     })
                     .catch(error => console.error('Error:', error));
             }
+
+            // Fungsi untuk mengisi form modal edit dengan data pasien
+            function fillEditForm(patient) {
+                // console.log("Data Pasien:", patient); // Debugging untuk memastikan data sampai di sini
+
+                // Format tanggal sesuai input date (tanpa waktu, hanya tanggal)
+                const formattedBirthdate = patient.tanggal_lahir !== "0000-00-00" ? patient.tanggal_lahir.split(' ')[0] : "";
+                const formattedVisitDate = patient.tanggal_kunjungan !== "0000-00-00 00:00:00" ? patient.tanggal_kunjungan.split(' ')[0] : "";
+
+                // Isi elemen form dengan data pasien
+                document.getElementById('editName').value = patient.nama;
+                document.getElementById('editBirthdate').value = formattedBirthdate;
+                document.getElementById('editAddress').value = patient.alamat;
+                document.getElementById('editPhone').value = patient.nomor_hp;
+                document.getElementById('editGender').value = patient.gender;
+                document.getElementById('editComplaint').value = patient.keluhan;
+                document.getElementById('editVisitDate').value = formattedVisitDate;
+
+                // Isi input hidden dengan ID Pasien
+                document.getElementById('editPatientId').value = patient.id_pasien;
+
+                // Tampilkan modal
+                $('#editDataModal').modal('show');
+            }
+
+
+            function submitEditForm() {
+                const formData = new FormData(document.getElementById('editPatientForm'));
+
+                const patientData = {
+                    id_pasien: document.getElementById('editPatientId').value,
+                    nama: formData.get('name'),
+                    tanggal_lahir: formData.get('birthdate'),
+                    alamat: formData.get('address'),
+                    nomor_hp: formData.get('phone'),
+                    gender: formData.get('gender'),
+                    keluhan: formData.get('complaint'),
+                    tanggal_kunjungan: formData.get('visitDate')
+                };
+
+                // console.log("Data Pasien yang dikirim:", patientData);  // Debugging: cek data sebelum dikirim
+
+                fetch('./updatePasien.php', {
+                    method: 'POST',
+                    body: JSON.stringify(patientData),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => {
+                        return response.text(); // Mengubah respons ke text terlebih dahulu
+                    })
+                    .then(text => {
+                        try {
+                            const data = JSON.parse(text); // Parsing JSON setelah mendapatkan response text
+                            console.log("Response Data:", data); // Debugging: Cek data response
+
+                            if (data.success) {
+                                alert('Data pasien berhasil diperbarui!');
+                                $('#editDataModal').modal('hide');
+                                loadPatients(); // Reload daftar pasien
+                            } else {
+                                alert('Gagal memperbarui data pasien. Error: ' + data.error);
+                            }
+                        } catch (error) {
+                            console.error('Error parsing JSON:', error);
+                            alert('Terjadi kesalahan pada server: ' + text); // Tampilkan teks asli jika gagal parsing JSON
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Terjadi kesalahan saat memperbarui data.');
+                    });
+            }
+
+
+            function deletePatient(id_pasien) {
+                // Konfirmasi sebelum menghapus
+                if (confirm('Apakah Anda yakin ingin menghapus data pasien ini?')) {
+                    fetch('./deletePasien.php', {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ id_pasien }) // Kirimkan id_pasien ke server
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert('Data pasien berhasil dihapus!');
+                                loadPatients(); // Refresh daftar pasien setelah penghapusan
+                            } else {
+                                alert('Gagal menghapus data pasien. Error: ' + data.error);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('Terjadi kesalahan saat menghapus data pasien.');
+                        });
+                }
+            }
+
 
 
         </script>

@@ -166,6 +166,68 @@
             </div>
             <hr>
 
+
+            <div class="modal fade" id="editDoctorModal" tabindex="-1" aria-labelledby="editDoctorModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editDoctorModalLabel">Edit Data Dokter</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Form Edit Data Dokter -->
+                            <form id="editDoctorForm">
+                                <input type="hidden" id="editDoctorId" name="id_dokter">
+                                <!-- Hidden field untuk ID Dokter -->
+
+                                <div class="form-group">
+                                    <label for="editName">Nama:</label>
+                                    <input type="text" class="form-control" id="editName" name="name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editSpeciality">Spesialis:</label>
+                                    <input type="text" class="form-control" id="editSpeciality" name="speciality"
+                                        required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editRoom">Ruangan:</label>
+                                    <input type="text" class="form-control" id="editRoom" name="room" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editPhone">Nomor HP:</label>
+                                    <input type="tel" class="form-control" id="editPhone" name="phone" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editGender">Gender:</label>
+                                    <select class="form-control" id="editGender" name="gender" required>
+                                        <option value="" disabled selected>Pilih Gender</option>
+                                        <option value="L">Pria</option>
+                                        <option value="P">Wanita</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="editWorkTime">Jam Kerja:</label>
+                                    <textarea class="form-control" id="editWorkTime" name="work_time" rows="3"
+                                        required></textarea>
+                                </div>
+
+                                <button type="button" class="btn btn-primary"
+                                    onclick="submitEditDoctorForm()">Update</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <h4 class="text-center">Data Dokter</h4>
             <table class="table table-bordered mt-3">
                 <thead>
@@ -197,7 +259,9 @@
                     .then(data => {
                         alert(data);
                         document.getElementById('DokterForm').reset(); // Reset form setelah submit
-                        loadDoctors(); // Muat ulang data dokter setelah submit
+                        location.reload();
+
+
                     })
                     .catch(error => {
                         console.error('Error:', error);
@@ -224,15 +288,137 @@
                                 <td>${doctor.jenis_kelamin}</td>
                                 <td>${doctor.jam_kerja}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-warning">Edit</button>
-                                    <button class="btn btn-sm btn-danger">Hapus</button>
+                                    <button class="btn btn-sm btn-warning edit-btn" data-index="${index}" data-toggle="modal" data-target="#editDoctorModal">Edit</button>
+                                    <button class="btn btn-sm btn-danger delete-btn" data-index="${index}">Hapus</button>
                                 </td>
                             `;
                             doctorTableBody.appendChild(row);
                         });
+
+                        // Tambahkan event listener ke tombol "Edit"
+                        // Menambahkan event listener ke tombol Edit
+                        document.querySelectorAll('.edit-btn').forEach(button => {
+                            button.addEventListener('click', function () {
+                                const index = this.getAttribute('data-index');
+                                fillEditDoctorForm(data[index]); // Panggil fungsi untuk isi form dengan data dokter
+                            });
+                        });
+
+
+                        // Tambahkan event listener ke tombol "Hapus"
+                        document.querySelectorAll('.delete-btn').forEach(button => {
+                            button.addEventListener('click', function () {
+                                const index = this.getAttribute('data-index');
+                                deleteDoctor(data[index].id_dokter); // Panggil fungsi hapus
+                            });
+                        });
                     })
                     .catch(error => console.error('Error:', error));
+
+            };
+
+
+
+            // Fungsi untuk mengisi form modal edit dengan data dokter
+            function fillEditDoctorForm(doctor) {
+                console.log("Data Dokter:", doctor); // Debugging untuk memastikan data sampai di sini
+
+                // Isi elemen form dengan data dokter
+                document.getElementById('editName').value = doctor.nama_dokter;
+                document.getElementById('editSpeciality').value = doctor.spesialis;
+                document.getElementById('editRoom').value = doctor.ruangan;
+                document.getElementById('editPhone').value = doctor.nomor_hp;
+                document.getElementById('editGender').value = doctor.jenis_kelamin;
+                document.getElementById('editWorkTime').value = doctor.jam_kerja;
+
+                // Isi input hidden dengan ID Dokter
+                document.getElementById('editDoctorId').value = doctor.id_dokter;
+
+                // Tampilkan modal
+                $('#editDoctorModal').modal('show');
+
             }
+
+            // Fungsi untuk mengirim data yang telah diubah ke server
+            function submitEditDoctorForm() {
+                // Ambil data dari form
+                const doctorId = document.getElementById('editDoctorId').value;
+                const name = document.getElementById('editName').value;
+                const speciality = document.getElementById('editSpeciality').value;
+                const room = document.getElementById('editRoom').value;
+                const phone = document.getElementById('editPhone').value;
+                const gender = document.getElementById('editGender').value;
+                const workTime = document.getElementById('editWorkTime').value;
+
+                // Validasi form (pastikan semua data diisi)
+                if (!name || !speciality || !room || !phone || !gender || !workTime) {
+                    alert('Semua field harus diisi!');
+                    return;
+                }
+
+                // Siapkan data untuk dikirim ke server
+                const data = {
+                    id_dokter: doctorId,
+                    nama_dokter: name,
+                    spesialis: speciality,
+                    ruangan: room,
+                    nomor_hp: phone,
+                    jenis_kelamin: gender,
+                    jam_kerja: workTime
+                };
+
+                // Kirim data ke server menggunakan fetch (POST)
+                fetch('./editDoctor.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data) // Kirim data dalam format JSON
+                })
+                    .then(response => response.json())
+                    .then(result => {
+                        // Tampilkan pesan sukses atau error
+                        if (result.success) {
+                            alert('Data dokter berhasil diperbarui!');
+                            $('#editDoctorModal').modal('hide'); // Tutup modal setelah berhasil
+                            loadDoctors(); // Muat ulang daftar dokter
+                        } else {
+                            alert('Gagal memperbarui data dokter.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Terjadi kesalahan saat memperbarui data dokter.');
+                    });
+            }
+
+            // Fungsi untuk menghapus data dokter
+            function deleteDoctor(doctorId) {
+                if (confirm('Apakah Anda yakin ingin menghapus data dokter ini?')) {
+                    // Kirim permintaan untuk menghapus data dokter
+                    fetch('./deleteDoctor.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ id_dokter: doctorId }) // Kirim ID dokter dalam format JSON
+                    })
+                        .then(response => response.json())
+                        .then(result => {
+                            if (result.success) {
+                                alert('Data dokter berhasil dihapus!');
+                                loadDoctors(); // Muat ulang daftar dokter setelah dihapus
+                            } else {
+                                alert('Gagal menghapus data dokter.');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('Terjadi kesalahan saat menghapus data dokter.');
+                        });
+                }
+            }
+
 
 
         </script>
