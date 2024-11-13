@@ -146,7 +146,7 @@
                 <table class="table table-bordered mt-4">
                     <thead>
                         <tr>
-                            <th>no.</th>
+                            <th id="id">no.</th>
                             <th>Nama Obat</th>
                             <th>Dosis</th>
                             <th>Deskripsi</th>
@@ -161,39 +161,6 @@
                 </table>
             </div>
         </div>
-
-        <!-- Modal Tambah Obat -->
-        <!-- <div class="modal fade" id="addObatModal" tabindex="-1" aria-labelledby="addObatModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="addObatModalLabel">Tambah Obat</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="obatForm">
-                            <div class="mb-3">
-                                <label for="namaObat" class="form-label">Nama Obat</label>
-                                <input type="text" class="form-control" id="name" name="name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="dosis" class="form-label">Dosis</label>
-                                <input type="text" class="form-control" id="dosis" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="deskripsi" class="form-label">Deskripsi</label>
-                                <textarea class="form-control" id="deskripsi" rows="3"></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="intruksi" class="form-label">Instruksi Penggunaan</label>
-                                <textarea class="form-control" id="intruksi" rows="2"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div> -->
         <script>
 
 function displayData() {
@@ -218,27 +185,28 @@ fetch('./obat.php', {
 document.addEventListener("DOMContentLoaded", loadObats);
 
 function loadObats() {
-fetch('./obat.php')
-    .then(response => response.json())
-    .then(data => {
-        const obatTableBody = document.getElementById('obatTableBody');
-        data.forEach((obat, index) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-    <td>${index + 1}</td>
-    <td>${obat.nama_obat}</td>
-    <td>${obat.dosis}</td>
-    <td>${obat.intruksi}</td>
-    <td>${obat.deskripsi}</td>
-    <td>
-        <button class="btn btn-sm btn-warning">Edit</button>
-        <button class="btn btn-sm btn-danger">Hapus</button>
-    </td>
-`;
-            obatTableBody.appendChild(row);
-        });
-    })
-    .catch(error => console.error('Error:', error));
+    fetch('./obat.php')
+        .then(response => response.json())
+        .then(data => {
+            const obatTableBody = document.getElementById('obatTableBody');
+            obatTableBody.innerHTML = "";  // Hapus data lama
+            data.forEach((obat, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${obat.nama_obat}</td>
+                    <td>${obat.dosis}</td>
+                    <td>${obat.deskripsi}</td>
+                    <td>${obat.intruksi}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" onclick="editObat(${obat.id_obat})">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteObat(${obat.id_obat})">Hapus</button>
+                    </td>
+                `;
+                obatTableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Error:', error));
 }
 
 

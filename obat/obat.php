@@ -31,6 +31,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     echo json_encode($obat);
+
+} else if ($_SERVER["REQUEST_METHOD"] == "PUT") {
+    parse_str(file_get_contents("php://input"), $_PUT);  // Parse data untuk HTTP PUT
+    $id_obat = $_PUT['id'];
+    $nama_obat = $_PUT['name'];
+    $dosis = $_PUT['dosis'];
+    $deskripsi = $_PUT['deskripsi'];
+    $intruksi = $_PUT['intruksi'];
+
+    $sql = "UPDATE obat SET nama_obat = '$nama_obat', dosis = '$dosis', deskripsi = '$deskripsi', intruksi = '$intruksi' WHERE id = '$id_obat'";
+    if ($conn->query($sql) === TRUE) {
+        echo "Data berhasil diupdate";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+} else if ($_SERVER["REQUEST_METHOD"] == "DELETE") {
+    parse_str(file_get_contents("php://input"), $_DELETE);  // Parse data untuk HTTP DELETE
+    $id_obat = $_DELETE['id'];
+
+    $sql = "DELETE FROM obat WHERE id = '$id_obat'";
+    if ($conn->query($sql) === TRUE) {
+        echo "Data berhasil dihapus";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 }
 
 $conn->close();

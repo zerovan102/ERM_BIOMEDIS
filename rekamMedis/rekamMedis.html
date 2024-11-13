@@ -95,7 +95,15 @@
                             <!-- Form Rekam Medis -->
                             <form id="rekamMedisForm">
                                 <div class="form-group">
+                                    <label for="medicId">ID Rekam Medis:</label>
+                                    <input type="text" class="form-control" id="pasienId" name="pasienId" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="pasienId">ID Pasien:</label>
+                                    <input type="text" class="form-control" id="pasienId" name="pasienId" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dokterId">ID Dokter:</label>
                                     <input type="text" class="form-control" id="pasienId" name="pasienId" required>
                                 </div>
 
@@ -128,7 +136,9 @@
                 <thead>
                     <tr>
                         <th>No.</th>
+                        <th>ID Rekam Medis</th>
                         <th>ID Pasien</th>
+                        <th>ID Dokter</th>
                         <th>Diagnosis</th>
                         <th>Pengobatan</th>
                         <th>Catatan Dokter</th>
@@ -147,7 +157,7 @@
             function submitRekamMedis() {
                 const formData = new FormData(document.getElementById('rekamMedisForm'));
 
-                fetch('rekamMedis_process.php', {
+                fetch('./rekamMedis.php', {
                     method: 'POST',
                     body: formData
                 })
@@ -165,32 +175,34 @@
 
             // Function to load Rekam Medis data from the server and populate the table
             function loadRekamMedisData() {
-                fetch('rekamMedis_fetch.php')
-                .then(response => response.json())
-                .then(data => {
-                    let tableBody = document.getElementById('rekamMedisData');
-                    tableBody.innerHTML = ''; // Clear the table
-                    data.forEach((record, index) => {
-                        let row = document.createElement('tr');
-                        row.innerHTML = `
-                            <td>${index + 1}</td>
-                            <td>${record.pasienId}</td>
-                            <td>${record.diagnosis}</td>
-                            <td>${record.treatment}</td>
-                            <td>${record.doctorNotes}</td>
-                            <td>${record.date}</td>
-                            <td>
-                                <button class="btn btn-sm btn-warning">Edit</button>
-                                <button class="btn btn-sm btn-danger">Hapus</button>
-                            </td>
-                        `;
-                        tableBody.appendChild(row);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error loading Rekam Medis data:', error);
-                });
-            }
+    fetch('./rekamMedis.php')
+    .then(response => response.json())
+    .then(data => {
+        let tableBody = document.getElementById('rekamMedisData');
+        tableBody.innerHTML = ''; // Clear the table
+        data.forEach((medicRecord, index) => {
+            let row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${medicRecord.id_rekam_medis}</td>
+                <td>${medicRecord.id_pasien}</td>
+                <td>${medicRecord.id_dokter}</td>
+                <td>${medicRecord.diagnosis}</td>
+                <td>${medicRecord.pengobatan}</td>
+                <td>${medicRecord.catatan_dokter}</td>
+                <td>${medicRecord.tanggal_kunjungan}</td>
+                <td>
+                    <button class="btn btn-sm btn-warning">Edit</button>
+                    <button class="btn btn-sm btn-danger">Hapus</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+    })
+    .catch(error => {
+        console.error('Error loading Rekam Medis data:', error);
+    });
+}
 
             // Load Rekam Medis data when page loads
             window.onload = loadRekamMedisData;
