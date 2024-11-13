@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Data Pasien dalam Modal</title>
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    <title>Form Data Rekam Medis Pasien</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -19,7 +18,6 @@
 <body>
     <!-- side bar -->
     <div class="sidebar">
-
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
             <div class="sidebar-brand-icon rotate-n-15">
                 <img src="../assets/img/logo.png" width="50" height="50"></img>
@@ -28,7 +26,6 @@
         </a>
         <hr class="mx-auto" style="max-width: 100%; width: 95%; margin-top: 15px;">
         <ul class="list-unstyled container">
-
             <li class="side-item">
                 <a class="nav-link" href="../index.html">
                     <i class="fas fa-home"></i>
@@ -44,204 +41,166 @@
                     <i class="fas fa-user fa"></i>
                     <span>Dokter</span></a>
             </li>
-
             <li class="side-item">
                 <a class="nav-link" href="../obat/obat.html">
                     <i class="fas fa-pills fa"></i>
                     <span>Obat</span></a>
             </li>
-
             <li class="side-item">
                 <a class="nav-link" href="../rekamMedis/rekamMedis.html">
-                    <i class="fas fa-user fa"></i>
+                    <i class="fas fa-notes-medical"></i>
                     <span>Rekam Medis</span></a>
             </li>
-
         </ul>
         <hr class="mx-auto" style="max-width: 100%; width: 95%; margin-top: 15px;">
-
     </div>
 
-
-
-    <script>
-        // Script to handle sidebar collapse
-        const sidebar = document.querySelector('.sidebar');
-        const content = document.querySelector('.content');
-        document.querySelector('.navbar-toggler').addEventListener('click', () => {
-            sidebar.classList.toggle('collapsed');
-            content.classList.toggle('collapsed');
-        });
-    </script>
-
-    <!-- end sidebar -->
-
-    <!-- NAVDASH -->
+    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
         </div>
     </nav>
-    <!-- END NAVBAR -->
 
+    <!-- Main Content -->
     <div class="content">
         <div class="container-fluid">
             <div style="display: flex;">
                 <div>
                     <h2>Dashboard Rekam Medis Pasien</h2>
-                    <p class="subtitle">Electronic Medical
-                        Record</p>
-                </div>
-                <div class="mt-1" style="margin-left: auto;">
-
+                    <p class="subtitle">Electronic Medical Record</p>
                 </div>
             </div>
             <div class="container mt-5 text-center">
                 <!-- Button untuk membuka modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#patientModal">
-                    Buka Form Data Pasien
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rekamMedisModal">
+                    Buka Form Data Rekam Medis
                 </button>
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="patientModal" tabindex="-1" aria-labelledby="patientModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="rekamMedisModal" tabindex="-1" aria-labelledby="rekamMedisModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="patientModalLabel">Form Data Pasien</h5>
+                            <h5 class="modal-title" id="rekamMedisModalLabel">Form Data Rekam Medis Pasien</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <!-- Form Data Pasien -->
-                            <form id="patientForm">
+                            <!-- Form Rekam Medis -->
+                            <form id="rekamMedisForm">
                                 <div class="form-group">
-                                    <label for="name">Nama:</label>
-                                    <input type="text" class="form-control" id="name" name="name" required>
+                                    <label for="pasienId">ID Pasien:</label>
+                                    <input type="text" class="form-control" id="pasienId" name="pasienId" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="birthdate">Tanggal Lahir:</label>
-                                    <input type="date" class="form-control" id="birthdate" name="birthdate" required>
+                                    <label for="diagnosis">Diagnosis:</label>
+                                    <textarea class="form-control" id="diagnosis" name="diagnosis" rows="3" required></textarea>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="address">Alamat:</label>
-                                    <input type="text" class="form-control" id="address" name="address" required>
+                                    <label for="treatment">Pengobatan:</label>
+                                    <textarea class="form-control" id="treatment" name="treatment" rows="3" required></textarea>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="phone">Nomor HP:</label>
-                                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                                    <label for="doctorNotes">Catatan Dokter:</label>
+                                    <textarea class="form-control" id="doctorNotes" name="doctorNotes" rows="3" required></textarea>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="gender">Gender:</label>
-                                    <select class="form-control" id="gender" name="gender" required>
-                                        <option value="" disabled selected>Pilih Gender</option>
-                                        <option value="L">Pria</option>
-                                        <option value="P">Wanita</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="complaint">Keluhan:</label>
-                                    <textarea class="form-control" id="complaint" name="complaint" rows="3"
-                                        required></textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="visitDate">Tanggal Kunjungan:</label>
-                                    <input type="date" class="form-control" id="visitDate" name="visitDate" required>
-                                </div>
-
-                                <button type="button" class="btn btn-primary" onclick="displayData()">Submit</button>
+                                <button type="button" class="btn btn-primary" onclick="submitRekamMedis()">Submit</button>
                             </form>
-
                         </div>
                     </div>
                 </div>
             </div>
             <hr>
 
-            <h4 class="text-center">Data Pasien</h4>
+            <h4 class="text-center">Data Rekam Medis Pasien</h4>
+            <p class="text-center">Rekam medis berisi data klinis pasien selama proses diagnosis dan pengobatan (treatment). Rekam medis merupakan bukti tertulis tentang proses pelayanan yang diberikan oleh dokter. Setiap dokter diharapkan mengisi rekam medis dengan benar, lengkap, dan tepat waktu untuk setiap kegiatan pelayanan medis yang dilakukan.</p>
             <table class="table table-bordered mt-3">
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Nama</th>
-                        <th>Tanggal Lahir</th>
-                        <th>Alamat</th>
-                        <th>Nomor HP</th>
-                        <th>Gender</th>
-                        <th>Keluhan</th>
-                        <th>Tanggal Kunjungan</th>
+                        <th>ID Pasien</th>
+                        <th>Diagnosis</th>
+                        <th>Pengobatan</th>
+                        <th>Catatan Dokter</th>
+                        <th>Tanggal</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td id="displayName"></td>
-                        <td id="displayBirthdate"></td>
-                        <td id="displayAddress"></td>
-                        <td id="displayPhone"></td>
-                        <td id="displayGender"></td>
-                        <td id="displayComplaint"></td>
-                        <td id="displayVisitDate"></td>
-                        <td>
-                            <button class="btn btn-sm btn-warning">Edit</button>
-                            <button class="btn btn-sm btn-danger">Hapus</button>
-                        </td>
-                    </tr>
+                <tbody id="rekamMedisData">
+                    <!-- Data Rekam Medis akan dimuat disini -->
                 </tbody>
             </table>
         </div>
+
         <script>
-            function displayData() {
-                alert("Data pasien berhasil disubmit!");
-            }
-            function displayData() {
-                document.getElementById("displayName").innerText = document.getElementById("name").value;
-                document.getElementById("displayBirthdate").innerText = document.getElementById("birthdate").value;
-                document.getElementById("displayAddress").innerText = document.getElementById("address").value;
-                document.getElementById("displayPhone").innerText = document.getElementById("phone").value;
-                document.getElementById("displayGender").innerText = document.getElementById("gender").value;
-                document.getElementById("displayComplaint").innerText = document.getElementById("complaint").value;
-                document.getElementById("displayVisitDate").innerText = document.getElementById("visitDate").value;
-            }
+            // Function to submit Rekam Medis form data via Fetch API
+            function submitRekamMedis() {
+                const formData = new FormData(document.getElementById('rekamMedisForm'));
 
-            function displayData() {
-                const formData = new FormData(document.getElementById('patientForm'));
-
-                fetch('main.php', {
+                fetch('rekamMedis_process.php', {
                     method: 'POST',
                     body: formData
                 })
-                    .then(response => response.text())
-                    .then(data => {
-                        alert(data); // Tampilkan pesan sukses atau error dari PHP
-                        document.getElementById('patientForm').reset(); // Reset form setelah submit
-                        $('#patientModal').modal('hide'); // Tutup modal setelah submit
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
+                .then(response => response.text())
+                .then(data => {
+                    alert(data); // Display success or error message from PHP
+                    document.getElementById('rekamMedisForm').reset(); // Reset form after submission
+                    $('#rekamMedisModal').modal('hide'); // Close modal after submit
+                    loadRekamMedisData(); // Reload data table
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
             }
 
+            // Function to load Rekam Medis data from the server and populate the table
+            function loadRekamMedisData() {
+                fetch('rekamMedis_fetch.php')
+                .then(response => response.json())
+                .then(data => {
+                    let tableBody = document.getElementById('rekamMedisData');
+                    tableBody.innerHTML = ''; // Clear the table
+                    data.forEach((record, index) => {
+                        let row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${index + 1}</td>
+                            <td>${record.pasienId}</td>
+                            <td>${record.diagnosis}</td>
+                            <td>${record.treatment}</td>
+                            <td>${record.doctorNotes}</td>
+                            <td>${record.date}</td>
+                            <td>
+                                <button class="btn btn-sm btn-warning">Edit</button>
+                                <button class="btn btn-sm btn-danger">Hapus</button>
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading Rekam Medis data:', error);
+                });
+            }
 
+            // Load Rekam Medis data when page loads
+            window.onload = loadRekamMedisData;
         </script>
 
-
-
+        <!-- Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </div>
 </body>
-</php>
+
+</html>

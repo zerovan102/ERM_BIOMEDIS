@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Data Pasien dalam Modal</title>
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    <title>Obat</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -17,17 +16,16 @@
 </head>
 
 <body>
-    <!-- Side bar -->
+    <!-- Sidebar -->
     <div class="sidebar">
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
             <div class="sidebar-brand-icon rotate-n-15">
-                <img src="../assets/img/logo.png" width="50" height="50" alt="Logo">
+                <img src="../assets/img/logo.png" width="50" height="50" />
             </div>
             <div class="sidebar-brand-text">Menu</div>
         </a>
         <hr class="mx-auto" style="max-width: 100%; width: 95%; margin-top: 15px;">
         <ul class="list-unstyled container">
-
             <li class="side-item">
                 <a class="nav-link" href="../index.html">
                     <i class="fas fa-home"></i>
@@ -35,40 +33,27 @@
             </li>
             <li class="side-item">
                 <a class="nav-link" href="../pasien/pasien.html">
-                    <i class="fas fa-user fa"></i>
+                    <i class="fas fa-user"></i>
                     <span>Pasien</span></a>
             </li>
             <li class="side-item">
                 <a class="nav-link" href="../dokter/dokter.html">
-                    <i class="fas fa-user fa"></i>
+                    <i class="fas fa-user"></i>
                     <span>Dokter</span></a>
             </li>
-
             <li class="side-item">
                 <a class="nav-link" href="../obat/obat.html">
-                    <i class="fas fa-pills fa"></i>
+                    <i class="fas fa-pills"></i>
                     <span>Obat</span></a>
             </li>
-
             <li class="side-item">
                 <a class="nav-link" href="../rekamMedis/rekamMedis.html">
-                    <i class="fas fa-user fa"></i>
+                    <i class="fas fa-user"></i>
                     <span>Rekam Medis</span></a>
             </li>
-
         </ul>
         <hr class="mx-auto" style="max-width: 100%; width: 95%; margin-top: 15px;">
     </div>
-
-    <!-- Script untuk sidebar -->
-    <script>
-        const sidebar = document.querySelector('.sidebar');
-        const content = document.querySelector('.content');
-        document.querySelector('.navbar-toggler').addEventListener('click', () => {
-            sidebar.classList.toggle('collapsed');
-            content.classList.toggle('collapsed');
-        });
-    </script>
 
     <!-- NAVDASH -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -76,136 +61,131 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Isi navbar -->
-        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
     </nav>
     <!-- END NAVBAR -->
 
-    <!-- Content Obat -->
     <div class="content">
         <div class="container-fluid">
             <div style="display: flex;">
                 <div>
-                    <h2>Obat</h2>
-                    <p class="subtitle">Electronic Medical Record</p>
+                    <h2>Dashboard Obat</h2>
+                    <p class="subtitle">Manajemen Obat</p>
                 </div>
-                <div class="mt-1" style="margin-left: auto;">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#addObatModal"">Tambah
-                        Obat</button>
-                </div>
-
+                <div class="mt-1" style="margin-left: auto;"></div>
+            </div>
+            <div class="container mt-5 text-center">
+                <!-- Button untuk membuka modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#obatModal">
+                    Buka Form Data Obat
+                </button>
             </div>
 
-            <div class=" modal fade" id="addObatModal" tabindex="-1" aria-labelledby="obatModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="obatModalLabel">Form Data Obat</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <!-- Form Data Pasien -->
-                                    <form id="obatForm">
-                                        <div class="form-group">
-                                            <label for="name">Nama Obat:</label>
-                                            <input type="text" class="form-control" id="name" name="name" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="dosis">Dosis:</label>
-                                            <input type="date" class="form-control" id="dosis" name="dosis" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="intruksi">Instruksi:</label>
-                                            <input type="text" class="form-control" id="intruksi" name="intruksi"
-                                                required>
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <label for="deskripsi">Deskripsi:</label>
-                                            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"
-                                                required></textarea>
-                                        </div>
-
-
-                                        <button type="button" class="btn btn-primary"
-                                            onclick="displayData()">Submit</button>
-                                    </form>
-
-                                </div>
-                            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="obatModal" tabindex="-1" aria-labelledby="obatModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="obatModalLabel">Form Data Obat</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                </div>
+                        <div class="modal-body">
+                            <!-- Form Data Obat -->
+                            <form id="obatForm">
+                                <div class="form-group">
+                                    <label for="name">Nama Obat:</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
 
-                <!-- Tabel Daftar Obat -->
-                <table class="table table-bordered mt-4">
-                    <thead>
-                        <tr>
-                            <th>Nama Obat</th>
-                            <th>Dosis</th>
-                            <th>Deskripsi</th>
-                            <th>Instruksi</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Contoh data obat -->
-                        <tr>
-                            <td>Paracetamol</td>
-                            <td>500mg</td>
-                            <td>Obat pereda nyeri dan demam</td>
-                            <td>1-2 tablet setiap 6 jam</td>
-                            <td>
-                                <button class="btn btn-sm btn-warning">Edit</button>
-                                <button class="btn btn-sm btn-danger">Hapus</button>
-                            </td>
-                        </tr>
-                        <!-- Data obat lainnya akan ditambahkan di sini -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                                <div class="form-group">
+                                    <label for="dosis">Dosis:</label>
+                                    <input type="text" class="form-control" id="dosis" name="dosis" required>
+                                </div>
 
-        <!-- Modal Tambah Obat -->
-        <div class="modal fade" id="addObatModal" tabindex="-1" aria-labelledby="addObatModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="addObatModalLabel">Tambah Obat</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="namaObat" class="form-label">Nama Obat</label>
-                                <input type="text" class="form-control" id="namaObat" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="dosis" class="form-label">Dosis</label>
-                                <input type="text" class="form-control" id="dosis" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="deskripsi" class="form-label">Deskripsi</label>
-                                <textarea class="form-control" id="deskripsi" rows="3"></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="instruksi" class="form-label">Instruksi Penggunaan</label>
-                                <textarea class="form-control" id="instruksi" rows="2"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </form>
+                                <div class="form-group">
+                                    <label for="desc">Deskripsi:</label>
+                                    <textarea class="form-control" id="desc" name="desc" rows="3" required></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="instruksi">Instruksi Penggunaan:</label>
+                                    <textarea class="form-control" id="instruksi" name="instruksi" rows="3" required></textarea>
+                                </div>
+
+                                <button type="button" class="btn btn-primary" onclick="submitObatData()">Submit</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
+            <hr>
+
+            <h4 class="text-center">Data Obat</h4>
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Nama Obat</th>
+                        <th>Dosis</th>
+                        <th>Deskripsi</th>
+                        <th>Instruksi</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="obatTableBody">
+                    <!-- Data obat akan ditambahkan di sini -->
+                </tbody>
+            </table>
         </div>
 
-        <!-- JavaScript -->
+        <script>
+            function submitObatData() {
+                const formData = new FormData(document.getElementById('obatForm'));
+
+                fetch('./obat.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.text())
+                    .then(data => {
+                        alert(data); // Tampilkan pesan sukses atau error dari PHP
+                        document.getElementById('obatForm').reset(); // Reset form setelah submit
+                        $('#obatModal').modal('hide'); // Tutup modal setelah submit
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+
+            document.addEventListener("DOMContentLoaded", loadObatData);
+
+            function loadObatData() {
+                fetch('./obat.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        const obatTableBody = document.getElementById('obatTableBody');
+                        data.forEach((obat, index) => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${obat.nama_obat}</td>
+                    <td>${obat.dosis}</td>
+                    <td>${obat.deskripsi}</td>
+                    <td>${obat.instruksi}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning">Edit</button>
+                        <button class="btn btn-sm btn-danger">Hapus</button>
+                    </td>
+                `;
+                            obatTableBody.appendChild(row);
+                        });
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        </script>
+
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
