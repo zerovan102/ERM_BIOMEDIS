@@ -99,6 +99,7 @@
                                     <input type="text" class="form-control" id="name" name="name" required>
                                 </div>
 
+<<<<<<< Updated upstream
                                 <div class="form-group">
                                     <label for="dosis">Dosis:</label>
                                     <input type="text" class="form-control" id="dosis" name="dosis" required>
@@ -117,6 +118,56 @@
                                 <button type="button" class="btn btn-primary" onclick="submitObatData()">Submit</button>
                             </form>
                         </div>
+=======
+                <!-- Tabel Daftar Obat -->
+                <table class="table table-bordered mt-4">
+                    <thead>
+                        <tr>
+                            <th>no.</th>
+                            <th>Nama Obat</th>
+                            <th>Dosis</th>
+                            <th>Deskripsi</th>
+                            <th>Instruksi</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="obatTableBody">
+                        <!-- Contoh data obat -->
+                        <!-- Data obat lainnya akan ditambahkan di sini -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Modal Tambah Obat -->
+        <div class="modal fade" id="addObatModal" tabindex="-1" aria-labelledby="addObatModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addObatModalLabel">Tambah Obat</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="obatForm">
+                            <div class="mb-3">
+                                <label for="namaObat" class="form-label">Nama Obat</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="dosis" class="form-label">Dosis</label>
+                                <input type="text" class="form-control" id="dosis" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="deskripsi" class="form-label">Deskripsi</label>
+                                <textarea class="form-control" id="deskripsi" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="instruksi" class="form-label">Instruksi Penggunaan</label>
+                                <textarea class="form-control" id="instruksi" rows="2"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </form>
+>>>>>>> Stashed changes
                     </div>
                 </div>
             </div>
@@ -139,6 +190,55 @@
                 </tbody>
             </table>
         </div>
+        <script>
+
+function displayData() {
+
+const formData = new FormData(document.getElementById('obatForm'));
+
+fetch('./obat.php', {
+    method: 'POST',
+    body: formData
+})
+    .then(response => response.text())
+    .then(data => {
+        alert(data); // Tampilkan pesan sukses atau error dari PHP
+        document.getElementById('obatForm').reset(); // Reset form setelah submit
+        $('#addObatModal').modal('hide'); // Tutup modal setelah submit
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", loadObats);
+
+function loadObats() {
+fetch('./obat.php')
+    .then(response => response.json())
+    .then(data => {
+        const obatTableBody = document.getElementById('obatTableBody');
+        data.forEach((obat, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+    <td>${index + 1}</td>
+    <td>${obat.nama_obat}</td>
+    <td>${obat.dosis}</td>
+    <td>${obat.intruksi}</td>
+    <td>${obat.deskripsi}</td>
+    <td>
+        <button class="btn btn-sm btn-warning">Edit</button>
+        <button class="btn btn-sm btn-danger">Hapus</button>
+    </td>
+`;
+            obatTableBody.appendChild(row);
+        });
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+
+        </script>
 
         <script>
             function submitObatData() {
