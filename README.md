@@ -4,3 +4,4 @@
 * path hasil clone tersebut di folder xampp/htdocs beserta dengan database tersebut
 * jalankan xampp
 * jalankan live server/localhost  
+# ERM_BIOMEDIS
