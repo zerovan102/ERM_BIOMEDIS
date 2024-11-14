@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Data Rekam Medis Pasien</title>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    <title>Rekam Medis</title>
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -81,8 +82,8 @@
                 </button>
             </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="rekamMedisModal" tabindex="-1" aria-labelledby="rekamMedisModalLabel" aria-hidden="true">
+            <div class="modal fade" id="rekamMedisModal" tabindex="-1" aria-labelledby="rekamMedisModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -95,34 +96,35 @@
                             <!-- Form Rekam Medis -->
                             <form id="rekamMedisForm">
                                 <div class="form-group">
-                                    <label for="medicId">ID Rekam Medis:</label>
-                                    <input type="text" class="form-control" id="pasienId" name="pasienId" required>
+                                    <label for="id_pasien">ID Pasien:</label>
+                                    <select class="form-control" id="id_pasien" name="id_pasien" required>
+                                        <!-- Data ID Pasien akan dimuat di sini -->
+                                    </select>
                                 </div>
+
                                 <div class="form-group">
-                                    <label for="pasienId">ID Pasien:</label>
-                                    <input type="text" class="form-control" id="pasienId" name="pasienId" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="dokterId">ID Dokter:</label>
-                                    <input type="text" class="form-control" id="pasienId" name="pasienId" required>
+                                    <label for="id_dokter">ID Dokter:</label>
+                                    <select class="form-control" id="id_dokter" name="id_dokter" required>
+                                        <!-- Data ID Dokter akan dimuat di sini -->
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="diagnosis">Diagnosis:</label>
-                                    <textarea class="form-control" id="diagnosis" name="diagnosis" rows="3" required></textarea>
+                                    <textarea class="form-control" id="diagnosis" name="diagnosis" rows="3"
+                                        required></textarea>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="treatment">Pengobatan:</label>
-                                    <textarea class="form-control" id="treatment" name="treatment" rows="3" required></textarea>
+                                    <label for="pengobatan">Pengobatan:</label>
+                                    <textarea class="form-control" id="pengobatan" name="pengobatan" rows="3"
+                                        required></textarea>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="doctorNotes">Catatan Dokter:</label>
-                                    <textarea class="form-control" id="doctorNotes" name="doctorNotes" rows="3" required></textarea>
-                                </div>
 
-                                <button type="button" class="btn btn-primary" onclick="submitRekamMedis()">Submit</button>
+
+                                <button type="button" class="btn btn-primary"
+                                    onclick="submitRekamMedis()">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -131,19 +133,19 @@
             <hr>
 
             <h4 class="text-center">Data Rekam Medis Pasien</h4>
-            <p class="text-center">Rekam medis berisi data klinis pasien selama proses diagnosis dan pengobatan (treatment). Rekam medis merupakan bukti tertulis tentang proses pelayanan yang diberikan oleh dokter. Setiap dokter diharapkan mengisi rekam medis dengan benar, lengkap, dan tepat waktu untuk setiap kegiatan pelayanan medis yang dilakukan.</p>
+            <p class="text-center">Rekam medis berisi data klinis pasien selama proses diagnosis dan pengobatan
+                (treatment). Rekam medis merupakan bukti tertulis tentang proses pelayanan yang diberikan oleh dokter.
+                Setiap dokter diharapkan mengisi rekam medis dengan benar, lengkap, dan tepat waktu untuk setiap
+                kegiatan pelayanan medis yang dilakukan.</p>
             <table class="table table-bordered mt-3">
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>ID Rekam Medis</th>
                         <th>ID Pasien</th>
                         <th>ID Dokter</th>
                         <th>Diagnosis</th>
                         <th>Pengobatan</th>
-                        <th>Catatan Dokter</th>
-                        <th>Tanggal</th>
-                        <th>Aksi</th>
+                        <th>Diterbitkan</th>
                     </tr>
                 </thead>
                 <tbody id="rekamMedisData">
@@ -151,67 +153,119 @@
                 </tbody>
             </table>
         </div>
+        <!-- Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script>
-            // Function to submit Rekam Medis form data via Fetch API
+
+            // Ambil data pasien dan dokter menggunakan AJAX
+            $(document).ready(function () {
+                $.ajax({
+                    url: './getDatas.php',
+                    method: 'GET',
+                    dataType: 'json',  // Pastikan data yang diterima adalah JSON
+                    success: function (data) {
+                        // Pastikan data yang diterima benar
+                        console.log(data); // Lihat output di console
+
+                        // Mengisi dropdown Pasien
+                        const pasienSelect = $('#id_pasien');
+                        pasienSelect.empty(); // Kosongkan dropdown sebelum mengisinya
+                        data.pasienData.forEach(function (pasien) {
+                            pasienSelect.append('<option value="' + pasien.id_pasien + '">' + pasien.nama + '</option>');
+                        });
+
+                        // Mengisi dropdown Dokter
+                        const dokterSelect = $('#id_dokter');
+                        dokterSelect.empty(); // Kosongkan dropdown sebelum mengisinya
+                        data.dokterData.forEach(function (dokter) {
+                            dokterSelect.append('<option value="' + dokter.id_dokter + '">' + dokter.nama_dokter + '</option>');
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+
+
+
             function submitRekamMedis() {
                 const formData = new FormData(document.getElementById('rekamMedisForm'));
 
+                // Ambil data form dan ubah menjadi objek JSON
+                const data = {
+                    id_pasien: formData.get('id_pasien'),
+                    id_dokter: formData.get('id_dokter'),
+                    diagnosis: formData.get('diagnosis'),
+                    pengobatan: formData.get('pengobatan')
+                };
+
+                // Kirim data ke PHP dengan fetch menggunakan POST
                 fetch('./rekamMedis.php', {
                     method: 'POST',
-                    body: formData
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data) // Kirim data dalam format JSON
                 })
-                .then(response => response.text())
-                .then(data => {
-                    alert(data); // Display success or error message from PHP
-                    document.getElementById('rekamMedisForm').reset(); // Reset form after submission
-                    $('#rekamMedisModal').modal('hide'); // Close modal after submit
-                    loadRekamMedisData(); // Reload data table
-                })
-                .catch(error => {
-                    console.error('Error:', error);
+                    .then(response => response.text())
+                    .then(message => {
+                        alert("Data berhasil ditambahkan"); // Tampilkan pesan sukses atau error dari PHP
+                        document.getElementById('rekamMedisForm').reset(); // Reset form setelah submit
+                        location.reload(); // Muat ulang halaman untuk melihat data terbaru
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+
+
+            function displayRekamMedisData(data) {
+                console.log("Data yang diterima:", data); // Tambahkan log di sini
+
+                const tableBody = document.getElementById('rekamMedisData');
+                tableBody.innerHTML = ''; // Bersihkan tabel sebelum menambah data baru
+
+                // Menambahkan data rekam medis ke tabel
+                data.forEach((rekamMedis, index) => {
+                    const row = document.createElement('tr');
+
+                    // Menambahkan kolom ke tabel
+                    row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${rekamMedis.nama_pasien}</td>
+                        <td>${rekamMedis.nama_dokter}</td>
+                        <td>${rekamMedis.diagnosis}</td>
+                        <td>${rekamMedis.pengobatan}</td>
+                        <td>${rekamMedis.tanggal_kunjungan}</td>
+                    `;
+
+                    tableBody.appendChild(row);
                 });
             }
 
-            // Function to load Rekam Medis data from the server and populate the table
-            function loadRekamMedisData() {
-    fetch('./rekamMedis.php')
-    .then(response => response.json())
-    .then(data => {
-        let tableBody = document.getElementById('rekamMedisData');
-        tableBody.innerHTML = ''; // Clear the table
-        data.forEach((medicRecord, index) => {
-            let row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${index + 1}</td>
-                <td>${medicRecord.id_rekam_medis}</td>
-                <td>${medicRecord.id_pasien}</td>
-                <td>${medicRecord.id_dokter}</td>
-                <td>${medicRecord.diagnosis}</td>
-                <td>${medicRecord.pengobatan}</td>
-                <td>${medicRecord.catatan_dokter}</td>
-                <td>${medicRecord.tanggal_kunjungan}</td>
-                <td>
-                    <button class="btn btn-sm btn-warning">Edit</button>
-                    <button class="btn btn-sm btn-danger">Hapus</button>
-                </td>
-            `;
-            tableBody.appendChild(row);
-        });
-    })
-    .catch(error => {
-        console.error('Error loading Rekam Medis data:', error);
-    });
-}
+            // Panggil fungsi untuk menampilkan data rekam medis ketika halaman dimuat
+            window.onload = function () {
+                fetch('./rekamMedis.php', {
+                    method: 'GET'
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("Data fetched:", data); // Tambahkan log di sini
+                        displayRekamMedisData(data);  // Tampilkan data rekam medis yang ada saat halaman dimuat
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+            }
 
-            // Load Rekam Medis data when page loads
-            window.onload = loadRekamMedisData;
+
+
+
         </script>
 
-        <!-- Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     </div>
 </body>
 
